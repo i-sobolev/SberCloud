@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
 using SberAPI.ViewModels;
+using System.Net.Mail;
+using System.Net;
 
 namespace SberAPI.Controllers
 {
@@ -31,7 +33,7 @@ namespace SberAPI.Controllers
                 await Data.SberCloudContext.AddAsync(newUser);
                 await Data.SberCloudContext.SaveChangesAsync();
 
-                return new OkResult();
+                return new ObjectResult(token);
             }
 
             {
