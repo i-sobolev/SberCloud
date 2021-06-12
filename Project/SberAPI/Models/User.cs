@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -36,5 +37,46 @@ namespace SberAPI.Models
         public virtual ICollection<ChatUser> ChatUsers { get; set; }
         public virtual ICollection<Chat> Chats { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
+
+        public UserViewModel ToViewModel()
+        {
+            return new UserViewModel()
+            {
+                Login = Login,
+                Password = Password,
+                FirstName = FirstName,
+                LastName = LastName,
+                MiddleName = MiddleName,
+                Email = Email,
+                Phone = Phone,
+                LawFirmId = LawFirmId,
+                IpAddress = IpAddress,
+                RegionId = RegionId,
+                CountryId = CountryId,
+                RoleId = RoleId,
+            };
+        }
+        public User FromViewModel(UserViewModel user)
+        {
+            return new User()
+            {
+                Login = user.Login,
+                Password = user.Password,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                Email = user.Email,
+                Phone = user.Phone,
+                LawFirmId = user.LawFirmId,
+                IpAddress = user.IpAddress,
+                RegionId = user.RegionId,
+                CountryId = user.CountryId,
+                RoleId = user.RoleId,
+                Country = Data.SberCloudContext.Countries.Where(x => x.Id == user.CountryId).FirstOrDefault(),
+                Role = Data.SberCloudContext.Roles.Where(x => x.Id == user.RoleId).FirstOrDefault(),
+                Region = Data.SberCloudContext.Regions.Where(x => x.Id == user.RegionId).FirstOrDefault(),
+                LawFirm = Data.SberCloudContext.LawFirms.Where(x => x.Id == user.LawFirmId).FirstOrDefault()
+            };
+        }
     }
 }

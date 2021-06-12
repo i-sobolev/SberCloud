@@ -15,13 +15,13 @@ namespace SberAPI.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] UserModel user)
+        public async Task<ActionResult<User>> Post([FromBody] UserViewModel user)
         {
             var isUserLoginExist = Data.SberCloudContext.Users.ToList().TrueForAll(x => x.Login != user.Login);
 
             if (isUserLoginExist)
             {
-                var newUser = FromModel(user);
+                var newUser = new User().FromViewModel(user);
 
                 var token = MD5
                     .Create()
@@ -39,28 +39,31 @@ namespace SberAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserModel>>> Get()
+        public async Task<ActionResult<IEnumerable<UserViewModel>>> Get()
         {
-            var result = await Data.SberCloudContext.Users.Select(x => new UserModel()
-            {
-                Login = x.Login,
-                Password = x.Password,
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-                MiddleName = x.MiddleName,
-                Email = x.Email,
-                Phone = x.Phone,
-                LawFirmId = x.LawFirmId,
-                IpAddress = x.IpAddress,
-                RegionId = x.RegionId,
-                CountryId = x.CountryId,
-                RoleId = x.RoleId,
-            }).ToListAsync();
+            //var result = await Data.SberCloudContext.Users.Select(x => new UserViewModel()
+            //{
+            //    Login = x.Login,
+            //    Password = x.Password,
+            //    FirstName = x.FirstName,
+            //    LastName = x.LastName,
+            //    MiddleName = x.MiddleName,
+            //    Email = x.Email,
+            //    Phone = x.Phone,
+            //    LawFirmId = x.LawFirmId,
+            //    IpAddress = x.IpAddress,
+            //    RegionId = x.RegionId,
+            //    CountryId = x.CountryId,
+            //    RoleId = x.RoleId,
+            //}).ToListAsync();
+
+            var result = await Data.SberCloudContext.Users
+                .Select(x => x.ToViewModel()).ToListAsync();
 
             return result;
         }
 
-        private User FromModel(UserModel user)
+        private User FromModel(UserViewModel user)
         {
             return new User()
             {

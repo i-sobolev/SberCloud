@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace SberAPI
 {
     [Serializable]
-    public class UserModel
+    public class UserViewModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
