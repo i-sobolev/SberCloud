@@ -30,8 +30,6 @@ namespace SberAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.Configure<ForwardedHeadersOptions>(options => options.KnownProxies.Add(IPAddress.Parse("10.0.0.100")));
-
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "SberAPI", Version = "v1" }));
         }
@@ -42,15 +40,9 @@ namespace SberAPI
             app.UseForwardedHeaders(new ForwardedHeadersOptions { ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto });
             app.UseAuthentication();
 
-            //app.UseHttpsRedirection();
-
             app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
 
-
-            //if (env.IsDevelopment())
-            //{
-            //app.UseDeveloperExceptionPage();
             app.UseSwagger(c =>
             {
                 c.PreSerializeFilters.Add((swagger, httpReq) =>
@@ -62,9 +54,7 @@ namespace SberAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SberAPI v1");
-                //c.RoutePrefix = "";
             });
-            //}
         }
     }
 }

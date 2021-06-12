@@ -7,6 +7,7 @@ using SberAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
+using SberAPI.ViewModels;
 
 namespace SberAPI.Controllers
 {
@@ -41,49 +42,10 @@ namespace SberAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserViewModel>>> Get()
         {
-            //var result = await Data.SberCloudContext.Users.Select(x => new UserViewModel()
-            //{
-            //    Login = x.Login,
-            //    Password = x.Password,
-            //    FirstName = x.FirstName,
-            //    LastName = x.LastName,
-            //    MiddleName = x.MiddleName,
-            //    Email = x.Email,
-            //    Phone = x.Phone,
-            //    LawFirmId = x.LawFirmId,
-            //    IpAddress = x.IpAddress,
-            //    RegionId = x.RegionId,
-            //    CountryId = x.CountryId,
-            //    RoleId = x.RoleId,
-            //}).ToListAsync();
-
             var result = await Data.SberCloudContext.Users
                 .Select(x => x.ToViewModel()).ToListAsync();
 
             return result;
-        }
-
-        private User FromModel(UserViewModel user)
-        {
-            return new User()
-            {
-                Login = user.Login,
-                Password = user.Password,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                MiddleName = user.MiddleName,
-                Email = user.Email,
-                Phone = user.Phone,
-                LawFirmId = user.LawFirmId,
-                IpAddress = user.IpAddress,
-                RegionId = user.RegionId,
-                CountryId = user.CountryId,
-                RoleId = user.RoleId,
-                Country = Data.SberCloudContext.Countries.Where(x => x.Id == user.CountryId).FirstOrDefault(),
-                Role = Data.SberCloudContext.Roles.Where(x => x.Id == user.RoleId).FirstOrDefault(),
-                Region = Data.SberCloudContext.Regions.Where(x => x.Id == user.RegionId).FirstOrDefault(),
-                LawFirm = Data.SberCloudContext.LawFirms.Where(x => x.Id == user.LawFirmId).FirstOrDefault()
-            };
         }
     }
 }
