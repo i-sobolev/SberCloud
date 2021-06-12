@@ -44,7 +44,9 @@ namespace SberAPI.Models
             {
                 entity.ToTable("Chat");
 
-                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+                entity.Property(e => e.DateCreated)
+                    .IsRequired()
+                    .HasMaxLength(30);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -113,7 +115,9 @@ namespace SberAPI.Models
 
                 entity.Property(e => e.Text).IsRequired();
 
-                entity.Property(e => e.Timestamp).HasColumnType("datetime");
+                entity.Property(e => e.Timestamp)
+                    .IsRequired()
+                    .HasMaxLength(30);
 
                 entity.HasOne(d => d.Chat)
                     .WithMany(p => p.Messages)
@@ -190,8 +194,6 @@ namespace SberAPI.Models
                 entity.Property(e => e.Phone)
                     .IsRequired()
                     .HasMaxLength(20);
-
-                entity.Property(e => e.Token).HasMaxLength(20);
 
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.Users)

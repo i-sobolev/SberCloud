@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -27,7 +28,6 @@ namespace SberAPI.Models
         public int? LawFirmId { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Token { get; set; }
 
         public virtual Country Country { get; set; }
         public virtual LawFirm LawFirm { get; set; }

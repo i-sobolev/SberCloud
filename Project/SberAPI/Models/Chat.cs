@@ -15,7 +15,7 @@ namespace SberAPI.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime DateCreated { get; set; }
+        public string DateCreated { get; set; }
         public int TypeId { get; set; }
         public int? AdminId { get; set; }
 

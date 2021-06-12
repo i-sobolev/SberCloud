@@ -14,13 +14,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Net;
 
-namespace ObscurityAPI
+namespace SberAPI
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Data.Initialize();
         }
 
         public IConfiguration Configuration { get; }
