@@ -13,5 +13,8 @@ namespace SberAPI.ViewModels
         public string DateCreated { get; set; }
         public int TypeId { get; set; }
         public int? AdminId { get; set; }
+
+        public List<MessageViewModel> Messages { get; set; }
+        public List<UserViewModel> Users { get; set; }
     }
 }
