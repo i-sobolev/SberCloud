@@ -11,14 +11,16 @@ namespace SberAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ChatController : Controller
+    public class ChatController : ControllerBase
     {
+        [HttpPost]
         public async Task<ActionResult> Post([FromBody] ChatViewModel chat)
         {
             await Data.SberCloudContext.AddAsync(new Chat().FromViewModel(chat));
             return new OkResult();
         }
 
+        [HttpGet]
         public async Task<ActionResult<ChatUserViewModel>> Get(int userId)
         {
             var isUserChatExist = Data.SberCloudContext.ChatUsers.ToList().TrueForAll(x => x.UserId == userId);
@@ -33,8 +35,6 @@ namespace SberAPI.Controllers
             }
 
             return new BadRequestResult();
-
         }
-
     }
 }

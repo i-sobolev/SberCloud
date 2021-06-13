@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace SberAPI.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
+    [ApiController]
     public class CountryController : ControllerBase
     {
         [HttpGet]

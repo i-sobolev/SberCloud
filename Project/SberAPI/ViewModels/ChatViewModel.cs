@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace SberAPI.ViewModels
 {
+    [Serializable]
     public class ChatViewModel
     {
         public int Id { get; set; }
