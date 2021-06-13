@@ -19,7 +19,7 @@ namespace SberAPI.Controllers
         {
             var result = await Data.SberCloudContext.Messages
                 .Where(x => x.ChatId == chatId).Select(x => new MessageViewModel()
-                { 
+                {
                     Id = x.Id,
                     Chat = x.Chat.ToViewModel(),
                     Text = x.Text,
@@ -35,9 +35,18 @@ namespace SberAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(MessageViewModel message)
+        public async Task<ActionResult> Post(string text, int userId, int chatId, string timestamp)
         {
-            await Data.SberCloudContext.AddAsync(new Message().FromViewModel(message));
+            await Data.SberCloudContext.AddAsync( new Message
+            {
+                Text = text,
+                ChatId = chatId,
+                UserId = userId,
+                User = Data.SberCloudContext.Users.Where(x => x.Id == userId).FirstOrDefault(),
+                Chat = Data.SberCloudContext.Chats.Where(x => x.Id == chatId).FirstOrDefault(),
+                Timestamp =  timestamp
+            });
+
             await Data.SberCloudContext.SaveChangesAsync();
             return new OkResult();
         }
