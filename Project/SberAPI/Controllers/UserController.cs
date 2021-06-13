@@ -18,7 +18,7 @@ namespace SberAPI.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost]
-        public async Task<ActionResult<User>> Post([FromBody] UserViewModel user)
+        public async Task<ActionResult<Token>> Post([FromBody] UserViewModel user)
         {
             var isUserLoginExist = Data.SberCloudContext.Users.ToList().TrueForAll(x => x.Login != user.Login);
 
@@ -26,14 +26,17 @@ namespace SberAPI.Controllers
             {
                 var newUser = new User().FromViewModel(user);
 
-                var token = MD5
-                    .Create()
-                    .ComputeHash(Encoding.UTF8.GetBytes(user.Email + user.Phone));
+                //var token = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(user.Email + user.Phone));
+
+                //var token = Encoding.UTF8.GetBytes(user.Email + user.Phone);
+                //var totxt = Encoding.Default.GetString(token);
+                //var totxt = "ao";
 
                 await Data.SberCloudContext.AddAsync(newUser);
                 await Data.SberCloudContext.SaveChangesAsync();
 
-                return new ObjectResult(token);
+                //return new ObjectResult(new Token() { Data = totxt });
+                return new OkResult();
             }
 
             {
@@ -50,4 +53,5 @@ namespace SberAPI.Controllers
             return result;
         }
     }
+
 }

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using SberAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,6 +77,7 @@ namespace SberAPI.Models
                 Region = Data.SberCloudContext.Regions.Where(x => x.Id == user.RegionId).FirstOrDefault(),
                 LawFirm = Data.SberCloudContext.LawFirms.Where(x => x.Id == user.LawFirmId).FirstOrDefault()
             };
+
         }
     }
 }

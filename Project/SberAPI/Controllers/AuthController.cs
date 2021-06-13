@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SberAPI.Models;
-using SberAPI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SberAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -22,7 +21,7 @@ namespace SberAPI.Controllers
                 (x.Email == login && x.Password == password))
                 .FirstOrDefault();
 
-            if (result != null)
+            if (!result.Equals(null))
                 return new ObjectResult(result.ToViewModel());
 
             else
