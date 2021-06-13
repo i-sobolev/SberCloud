@@ -34,7 +34,7 @@ namespace SberAPI.Models
         {
             return new Message()
             {
-                ChatId = message.Id,
+                ChatId = message.Chat.Id,
                 Chat = Data.SberCloudContext.Chats.Where(x => x.Id == ChatId).FirstOrDefault(),
 
                 Id = message.Id,

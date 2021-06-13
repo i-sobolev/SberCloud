@@ -20,9 +20,9 @@ namespace SberAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Token>> Post([FromBody] UserViewModel user)
         {
-            var isUserLoginExist = Data.SberCloudContext.Users.ToList().TrueForAll(x => x.Login != user.Login);
+            var isUserLoginExist = Data.SberCloudContext.Users.ToList().TrueForAll(x => x.Login == user.Login);
 
-            if (isUserLoginExist)
+            if (!isUserLoginExist)
             {
                 var newUser = new User().FromViewModel(user);
 
@@ -48,6 +48,35 @@ namespace SberAPI.Controllers
                 .Select(x => x.ToViewModel()).ToListAsync();
 
             return result;
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Put(UserViewModel user)
+        {
+            var editableUser = await Data.SberCloudContext.Users
+                .Where(x => x.Id == user.Id)
+                .FirstOrDefaultAsync();
+
+            var isUserLoginExist = Data.SberCloudContext.Users.ToList().TrueForAll(x => x.Login == user.Login);
+
+            if (editableUser != null && !isUserLoginExist)
+            {
+                editableUser.FirstName = user.FirstName;
+                editableUser.LastName = user.LastName;
+                editableUser.MiddleName = user.MiddleName;
+                editableUser.Country = Data.SberCloudContext.Countries.Where(x => x.Id == user.CountryId).FirstOrDefault();
+                editableUser.Phone = user.Phone;
+                editableUser.Email = user.Email;
+
+                Data.SberCloudContext.SaveChanges();
+
+                return new OkResult();
+            }
+
+            else
+            {
+                return new EmptyResult();
+            }
         }
     }
 

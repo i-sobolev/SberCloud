@@ -17,6 +17,7 @@ namespace SberAPI.Controllers
         public async Task<ActionResult> Post([FromBody] ChatViewModel chat)
         {
             await Data.SberCloudContext.AddAsync(new Chat().FromViewModel(chat));
+            await Data.SberCloudContext.SaveChangesAsync();
             return new OkResult();
         }
 
@@ -25,7 +26,12 @@ namespace SberAPI.Controllers
         {
             var result = await Data.SberCloudContext.ChatUsers
                 .Where(x => x.UserId == userId)
-                .Select(x => x.Chat.ToViewModel())
+                .Select(x => new ChatUserViewModel()
+                {
+                    Id = x.Id,
+                    Chat = Data.SberCloudContext.Chats.Where(chat => chat.Id == x.Chat.Id).FirstOrDefault().ToViewModel(),
+                    User = Data.SberCloudContext.Users.Where(user => user.Id == x.User.Id).FirstOrDefault().ToViewModel()
+                })
                 .ToListAsync();
 
             if (result != null)

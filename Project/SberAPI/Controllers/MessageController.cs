@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SberAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MessageController : ControllerBase
     {
@@ -18,7 +18,14 @@ namespace SberAPI.Controllers
         public async Task<ActionResult<MessageViewModel>> Get(int chatId)
         {
             var result = await Data.SberCloudContext.Messages
-                .Where(x => x.ChatId == chatId).Select(x => x.ToViewModel()).ToListAsync();
+                .Where(x => x.ChatId == chatId).Select(x => new MessageViewModel()
+                { 
+                    Id = x.Id,
+                    Chat = x.Chat.ToViewModel(),
+                    Text = x.Text,
+                    TimeStamp = x.Text,
+                    User = x.User.ToViewModel()
+                }).ToListAsync();
 
             if (result != null)
                 return new ObjectResult(result);
@@ -31,6 +38,7 @@ namespace SberAPI.Controllers
         public async Task<ActionResult> Post(MessageViewModel message)
         {
             await Data.SberCloudContext.AddAsync(new Message().FromViewModel(message));
+            await Data.SberCloudContext.SaveChangesAsync();
             return new OkResult();
         }
     }
