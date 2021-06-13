@@ -26,17 +26,14 @@ namespace SberAPI.Controllers
             {
                 var newUser = new User().FromViewModel(user);
 
-                //var token = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(user.Email + user.Phone));
+                var token = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(user.Email + user.Phone));
 
-                //var token = Encoding.UTF8.GetBytes(user.Email + user.Phone);
-                //var totxt = Encoding.Default.GetString(token);
-                //var totxt = "ao";
+                var totxt = Encoding.Default.GetString(token);
 
                 await Data.SberCloudContext.AddAsync(newUser);
                 await Data.SberCloudContext.SaveChangesAsync();
 
-                //return new ObjectResult(new Token() { Data = totxt });
-                return new OkResult();
+                return new ObjectResult(new Token() { Data = totxt });
             }
 
             {
