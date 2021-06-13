@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 namespace SberAPI.ViewModels
 {
     [Serializable]
-    public class CountryViewModel
+    public class ChatUserViewModel
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public UserViewModel User { get; set; }
+        public ChatViewModel Chat { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SberAPI.ViewModels;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -17,5 +18,14 @@ namespace SberAPI.Models
         public string CountryCode { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
+
+        public CountryViewModel ToViewModel()
+        {
+            return new CountryViewModel()
+            {
+                Id = Id,
+                Name = Name
+            };
+        }
     }
 }
