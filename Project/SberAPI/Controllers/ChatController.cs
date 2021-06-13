@@ -64,7 +64,7 @@ namespace SberAPI.Controllers
                         Id = mes.Id,
                         Chat = mes.Chat.ToViewModel(),
                         Text = mes.Text,
-                        TimeStamp = mes.Text,
+                        TimeStamp = mes.Timestamp,
                         User = mes.User.ToViewModel()
                     }).ToList()
                 }).ToListAsync();
