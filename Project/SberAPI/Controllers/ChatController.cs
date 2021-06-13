@@ -23,18 +23,16 @@ namespace SberAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<ChatUserViewModel>> Get(int userId)
         {
-            var isUserChatExist = Data.SberCloudContext.ChatUsers.ToList().TrueForAll(x => x.UserId == userId);
+            var result = await Data.SberCloudContext.ChatUsers
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Chat.ToViewModel())
+                .ToListAsync();
 
-            if (isUserChatExist)
-            {
-                var result = await Data.SberCloudContext.ChatUsers.Where(x => x.UserId == userId)
-               .Select(x => x.ToViewModel()).ToListAsync();
-
+            if (result != null)
                 return new ObjectResult(result);
 
-            }
-
-            return new BadRequestResult();
+            else
+                return new BadRequestResult();
         }
     }
 }

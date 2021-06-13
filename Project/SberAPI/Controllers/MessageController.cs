@@ -14,6 +14,7 @@ namespace SberAPI.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
+        [HttpGet]
         public async Task<ActionResult<MessageViewModel>> Get(int chatId)
         {
             var result = await Data.SberCloudContext.Messages
@@ -26,6 +27,7 @@ namespace SberAPI.Controllers
                 return new EmptyResult();
         }
 
+        [HttpPost]
         public async Task<ActionResult> Post(MessageViewModel message)
         {
             await Data.SberCloudContext.AddAsync(new Message().FromViewModel(message));
