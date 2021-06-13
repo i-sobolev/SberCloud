@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SberAPI.ViewModels;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -15,5 +16,17 @@ namespace SberAPI.Models
 
         public virtual Chat Chat { get; set; }
         public virtual User User { get; set; }
+
+        public MessageViewModel ToViewModel()
+        {
+            return new MessageViewModel()
+            {
+                Chat = Chat.ToViewModel(),
+                Id = Id,
+                Text = Text,
+                TimeStamp = Timestamp,
+                User = User.ToViewModel()
+            };
+        }
     }
 }

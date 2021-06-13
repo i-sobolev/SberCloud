@@ -42,6 +42,7 @@ namespace SberAPI.Models
         {
             return new UserViewModel()
             {
+                Id = Id,
                 Login = Login,
                 Password = Password,
                 FirstName = FirstName,
@@ -53,13 +54,14 @@ namespace SberAPI.Models
                 IpAddress = IpAddress,
                 RegionId = RegionId,
                 CountryId = CountryId,
-                RoleId = RoleId,
+                RoleId = RoleId
             };
         }
         public User FromViewModel(UserViewModel user)
         {
             return new User()
             {
+                Id = user.Id,
                 Login = user.Login,
                 Password = user.Password,
                 FirstName = user.FirstName,
