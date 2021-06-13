@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SberAPI.Models;
 using SberAPI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,8 @@ namespace SberAPI.Controllers
 
         public async Task<ActionResult> Post(MessageViewModel message)
         {
-
+            await Data.SberCloudContext.AddAsync(new Message().FromViewModel(message));
+            return new OkResult();
         }
     }
 }

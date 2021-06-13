@@ -1,6 +1,7 @@
 ﻿using SberAPI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable disable
 
@@ -26,6 +27,23 @@ namespace SberAPI.Models
                 Text = Text,
                 TimeStamp = Timestamp,
                 User = User.ToViewModel()
+            };
+        }
+
+        public Message FromViewModel(MessageViewModel message)
+        {
+            return new Message()
+            {
+                ChatId = message.Id,
+                Chat = Data.SberCloudContext.Chats.Where(x => x.Id == ChatId).FirstOrDefault(),
+
+                Id = message.Id,
+                Text = message.Text,
+
+                UserId = message.User.Id,
+                User = Data.SberCloudContext.Users.Where(x => x.Id == UserId).FirstOrDefault(),
+
+                Timestamp = message.TimeStamp
             };
         }
     }
