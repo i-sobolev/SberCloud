@@ -1,0 +1,135 @@
+:root {
+    --sb-brand-green: #07E897;
+    --sb-brand-black: #343F48;
+    --sb-brand-gray: #D2D2D2;
+    --sb-green-gradient: linear-gradient(235.56deg, #07E897 40.45%, #00956F 90.43%);
+
+    --sb-gray-1: #F5F5F5;
+    --sb-gray-2: #EDEDED;
+    --sb-gray-3: #D2D2D2;
+    --sb-gray-4: #CFCFCF;
+    --sb-gray-5: #CCCCCC;
+    --sb-gray-6: #A0A0A0;
+    --sb-gray-7: #6C6C6C;
+    --sb-black-1: #1B1B1B;
+    --sb-black-2: #343F48;
+    --sb-white: #FFFFFF;
+    --sb-green-1: #E8FFF7;
+    --sb-green-2: #B2FFE4;
+    --sb-green-3: #67FBC6;
+    --sb-green-4: #00EA95;
+    --sb-green-5: #07E897;
+    --sb-green-6: #07D88D;
+    --sb-green-7: #07CC85;
+    --sb-green-8: #12BBA6;
+    --sb-blue-1: #258CB8;
+    --sb-blue-2: #375EC9;
+    --sb-purple: #5C00EC;
+    --sb-red-1: #E84E58;
+    --sb-red-2: #FF0000;
+    --sb-yellow: #F0D559;
+
+
+    --sb-light-red-tag: #FBD6D5;
+    --sb-light-pink-tag: #FFD2E7;
+    --sb-light-purple-tag: #DACEFF;
+    --sb-light-blue-tag: #CFEDF6;
+    --sb-light-green-tag: #CEFFF0;
+    --sb-light-yellow-tag: #F6F3AE;
+    --sb-light-orange-tag: #FFE5B2;
+    --sb-light-brown-tag: #F0CCBE;
+    --sb-light-gray-tag-1: #E6E6E5;
+    --sb-light-gray-tag-2: #D7D7D6;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "SB Sans Interface", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #343F48;
+    background-color: #FFFFFF;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.filled:hover {
+    color: var(--sb-white);
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem var(--sb-green-3);
+}
+
+.filled {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+
+    left: 0px;
+    top: 0px;
+
+    background: var(--sb-black-2);
+    border-radius: 4px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+
+    font-family: "SB Sans Interface", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--sb-white);
+}
+
+.div-flex {
+    display: flex;
+}
+
+.form-block {
+    display: block;
+}
+
+.input-signin {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.div-login {
+    width: 360px;
+    margin: 100px auto 0;
+}
+
+#signin-button {
+    padding: 8px 40px;
+    margin: 0 auto;
+}
+
+#signin-logo {
+    width: 100%;
+    margin: 0 auto 30px;
+}
+
+#signin-title {
+    font-size: 24px;
+    font-weight: lighter;
+    margin: 0 auto 20px;
+}

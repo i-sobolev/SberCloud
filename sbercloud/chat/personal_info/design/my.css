@@ -1,0 +1,129 @@
+@font-face {
+    font-family: "SemiBold"; 
+    src: url("../font/SBSansUI-Semibold.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+@font-face {
+    font-family: "SemiRegular"; 
+    src: url("../font/SBSansDisplay-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+body{
+    font-family: "SemiRegular";
+    margin: 0;
+}
+.in-line-data{
+    display:inline-table;
+    height: 94%;
+}
+.style-userbook{
+    margin: 0;
+    background: #FFFFFF;
+    width: 20%;
+    float: left;
+}
+.style-controlpanel{
+    margin: 0;
+    background: #07CC85;
+    width: 15%;
+    float: left;
+}
+.style-main{
+    float: left;
+    margin: 0;
+    width: 60%;
+    background: #FFFFFF;
+}
+.line-up{
+    width: 100%;
+    height:5%;
+    background: #343F48;
+    background-size: auto;    
+}
+.design-img{
+    height: 80%;
+    padding: 5px;
+}
+.design-btn{
+    display: inline-flex;
+    width: 100%;
+}
+.img-m{
+    margin-top: 5%;
+}
+.img-icon{
+    padding: 11px;
+    height: 40px;
+}
+header{
+    font-family: "SemiBold";
+    font-size: 40pt;
+    padding-left: 10pt;
+    margin-top: 5px;
+}
+.f-text{
+    padding-top:8px;
+    font-family: "SemiRegular"; 
+}
+.f-link{
+    text-decoration: none;
+    font-weight: bold;
+    color: black; 
+}
+.beauty-btn{
+    color: black;
+    transition: .2s;
+}
+  .beauty-btn:hover{
+      background: #07E897;
+    transition: .5s;
+    color: black;
+    box-shadow: 0 0 6px 0px #076543;
+  }
+  .txt-search{
+    padding: 10px;
+    background: #07cc85;
+    margin: 15px;
+    border-radius: 10px;
+    border-color: transparent;
+}
+::placeholder{
+      color:black;
+  }
+  .dot-pic{
+    background: #d4d4d4;
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    text-align: center;
+  }
+  .data-message{
+    background: #07cc85;
+    padding: 10px;
+    margin-left: 0px;
+    margin-top: 15px;
+    margin-right: 40px;
+    border-radius: 10px;
+  }
+  .txt-nabor{
+      width: 60%;
+      background: #07cc85;
+      border-radius: 10px;
+      height: 50px;
+      position: fixed;
+  }
+  .header-data{
+    background: linear-gradient(
+        329deg
+        ,#07CC85, #12BBA6);
+            height: 200px;
+            display: inline-block;
+            padding: 10px;
+            width: 80%;
+            position: absolute;   
+            font-family: "SemiBold";
+            font-size:20pt;
+  }
