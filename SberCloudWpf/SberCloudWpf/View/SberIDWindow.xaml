@@ -1,0 +1,92 @@
+﻿<Window x:Class="SberCloudWpf.View.SberIDWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SberCloudWpf.View" xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SberIDWindow" Height="550" Width="600"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Button Style="{StaticResource BtnTop}"
+                        Name="BtnRoll"
+                        Template="{DynamicResource ButtonTopBarControlTemplate}"
+                        Click="BtnRoll_Click">
+                    <TextBlock Text="___"
+                               FontWeight="Bold"/>
+                </Button>
+                <Button Style="{StaticResource BtnTop}"
+                        Name="BtnClose"
+                        Template="{DynamicResource ButtonCloseControlTemplate}"
+                       Click="BtnClose_Click">
+                    <material:PackIcon Kind="Close"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Image Source="/Resources/sberColor.png"
+                       HorizontalAlignment="Left"
+                   Margin="5"
+                       Width="350"/>
+                <TextBlock Text="Вход с помощью Сбер ID"
+                           FontSize="25"
+                           Foreground="#A0A0A0"
+                           Margin="5 5 5 20"
+                           FontWeight="SemiBold"/>
+
+                <Grid Width="500"
+                      Margin="5 5 5 30">
+                    <Border CornerRadius="5"
+                            Background="#A0A0A0">
+                        <TextBlock TextWrapping="Wrap"
+                                   Style="{StaticResource TxbDef}"
+                                   Foreground="White"
+                                   FontSize="15"
+                                   Padding="10"
+                            Text="Вход доступен только клиентам банка. Убедитесь, что у вас установлено приложение СберБанк Онлайн и приходят Push-уведомления"/>
+                    </Border>
+                </Grid>
+                <TextBlock Text="Введите телефон"
+                           Style="{StaticResource TxbDef}"
+                           FontWeight="SemiBold"
+                           FontSize="18"/>
+                <Grid>
+                    <TextBox Template="{DynamicResource TextBoxBaseControlTemplate1}"
+                         FontSize="18"
+                             Padding="5"
+                         Background="Transparent"
+                         Name="TxtPhone"
+                         VerticalAlignment="Center"                        
+                         BorderBrush="#343F48"
+                         BorderThickness="2"/>
+                </Grid>
+                <Button Name="BtnSber"
+                        Click="BtnSber_Click"
+                        Background="#07E897"
+                        Foreground="Black"
+                        FontWeight="SemiBold"
+                        Style="{StaticResource BtnBase}"
+                        Height="40"
+                        Margin="5 20 5 5"
+                        Template="{DynamicResource ButtonDefault1}">
+                    Войти
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

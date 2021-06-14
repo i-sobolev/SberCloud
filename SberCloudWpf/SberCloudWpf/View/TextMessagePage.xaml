@@ -1,0 +1,175 @@
+﻿<Page x:Class="SberCloudWpf.View.TextMessagePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SberCloudWpf.View" xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="900"
+      Title="TextMessagePage">
+
+    <Grid Background="#F5F5F5">
+        <ListView Name="ListMessage"
+                      Background="Transparent"
+                      BorderBrush="Transparent"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  VerticalAlignment="Bottom"
+                  Height="600"
+                  Margin="5 5 5 60">
+                <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
+                                    Margin="25 5 25 5">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="45" Height="45"
+                                         VerticalAlignment="Bottom"
+                                                 Margin="10, 15, 5, 5">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Resources/person.jpg" Stretch="UniformToFill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Grid Margin="0 15 0 5"
+                                      VerticalAlignment="Top">
+                                <Border CornerRadius="10"
+                                        Background="White">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding GetUserName}"
+                                                   MaxWidth="300"
+                                                       TextWrapping="Wrap"
+                                                       FontSize="15"
+                                                   Margin="10"
+                                                   FontWeight="SemiBold"
+                                                       Style="{StaticResource TxbDef}"/>
+                                        <TextBlock Text="{Binding Text}"
+                                                   MaxWidth="300"
+                                                       TextWrapping="Wrap"
+                                                       FontSize="15"
+                                                   Margin="10"
+                                                       Style="{StaticResource TxbDef}"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Height="90"
+                  Margin="8"
+                      VerticalAlignment="Top">
+                <Border CornerRadius="10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF07CC85" Offset="0"/>
+                            <GradientStop Color="#FF12BBA6" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="50" Height="50"
+                                 Margin="20, 0, 20, 0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Resources/person.jpg" Stretch="UniformToFill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding GetUserName}"
+                                           Style="{StaticResource TxbDef}"
+                                   Name="TxtUserName"
+                                   FontSize="25"
+                                       Margin="5, 5, 5, 5"
+                                   FontWeight="SemiBold"/>
+                                <TextBlock Name="TxtStatus"
+                                           Style="{StaticResource TxbDef}"
+                                   Text="Online"
+                                       Margin="5, 0, 5, 5"
+                                   FontSize="15"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    Margin="20, 0, 20, 0"
+                                    Grid.Column="1">
+                            <material:PackIcon Grid.Column="3"
+                                               Kind="Search"
+                                           Height="30"
+                                           Width="30"
+                                               Margin="7"
+                                           Foreground="#343F48"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                            <material:PackIcon Grid.Column="3"
+                                               Kind="DotsVertical"
+                                           Height="30"
+                                           Width="30"
+                                               Margin="7"
+                                           Foreground="#343F48"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Background="Transparent"
+                  Height="50"
+                  VerticalAlignment="Bottom"
+                  Margin="8">
+                <Border CornerRadius="10"
+                        Background="White">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <TextBlock Margin="10, 5, 5, 5"
+                                     Text="Ваше сообщение..."
+                                     VerticalAlignment="Center"
+                                       FontSize="17"
+                                       Name="TxtMessageHint"/>
+                            <TextBox Background="Transparent"
+                                     BorderBrush="Transparent"
+                                     FontSize="17"
+                                     VerticalAlignment="Center"
+                                     Margin="10, 5, 5, 5"
+                                     Name="TxtMessage"
+                                     LostFocus="TxtMessage_LostFocus"
+                                     GotFocus="TxtMessage_GotFocus"
+                                     Template="{DynamicResource TextBoxBaseControlTemplate6}"/>
+                        </Grid>
+                        <material:PackIcon Grid.Column="1"
+                                           Height="30"
+                                           Width="30"
+                                           Foreground="#343F48"
+                                               Kind="Smiley"                                              
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                        <material:PackIcon Grid.Column="2"
+                                               Kind="Image"     
+                                           Height="30"
+                                           Foreground="#343F48"
+                                           Width="30"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                        <material:PackIcon Grid.Column="3"
+                                               Kind="Send"
+                                           Name="BtnSend"
+                                           MouseLeftButtonDown="BtnSend_MouseLeftButtonDown"
+                                           Height="30"
+                                           Width="30"
+                                           Foreground="#343F48"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Grid>
+</Page>
